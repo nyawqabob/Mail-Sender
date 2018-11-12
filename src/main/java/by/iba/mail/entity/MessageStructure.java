@@ -6,6 +6,23 @@ public class MessageStructure {
     private String subject;
     private String content;
     private boolean isHtml;
+    private String imageUrl;
+
+    public boolean isHtml() {
+        return isHtml;
+    }
+
+    public void setHtml(boolean html) {
+        isHtml = html;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getTo() {
         return to;
@@ -29,14 +46,6 @@ public class MessageStructure {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public boolean isHtml() {
-        return isHtml;
-    }
-
-    public void setIsHtml(boolean isHtml) {
-        this.isHtml = isHtml;
     }
 
 }

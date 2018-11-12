@@ -15,14 +15,19 @@ public class MailConfiguration {
     @Autowired
     private MailData mailData;
 
-    @Bean(name = "mailSender")
+    @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost(mailData.getHost());
-        mailSender.setProtocol(mailData.getProtocol());
-        mailSender.setPort(mailData.getPort());
-        mailSender.setUsername(mailData.getUsername());
-        mailSender.setPassword(mailData.getPassword());
+        String host = mailData.getHost();
+        String protocol = mailData.getProtocol();
+        int port = mailData.getPort();
+        String username = mailData.getUsername();
+        String password = mailData.getPassword();
+        mailSender.setHost(host);
+        mailSender.setProtocol(protocol);
+        mailSender.setPort(port);
+        mailSender.setUsername(username);
+        mailSender.setPassword(password);
         Properties properties = mailSender.getJavaMailProperties();
         properties.put("mail.smtp.starttls.enable", "true");
         properties.setProperty("mail.transport.protocol", mailData.getProtocol());

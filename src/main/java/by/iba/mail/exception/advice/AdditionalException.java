@@ -1,4 +1,4 @@
-package by.iba.mail.controller.advice;
+package by.iba.mail.exception.advice;
 
 public class AdditionalException {
 

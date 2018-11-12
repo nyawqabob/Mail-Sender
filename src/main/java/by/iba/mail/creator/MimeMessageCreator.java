@@ -18,14 +18,14 @@ public class MimeMessageCreator {
     @Autowired
     private JavaMailSender mailSender;
 
-    public MimeMessage createAndSetSimpleMessage(String username, MessageStructure messageStructure) throws MessagingException {
+    public MimeMessage createAndSetMultipartMessage(String username, MessageStructure messageStructure) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         setCommonParts(message, username, messageStructure);
         message.setContent(messageStructure.getContent(), "text/html");
         return message;
     }
 
-    public MimeMessage createAndSetSimpleMessage(String username, MessageStructure messageStructure, MimeBodyPart textOfBody, MimeBodyPart attachmentOfBody) throws MessagingException {
+    public MimeMessage createAndSetMultipartMessage(String username, MessageStructure messageStructure, MimeBodyPart textOfBody, MimeBodyPart attachmentOfBody) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         setCommonParts(message, username, messageStructure);
         MimeMultipart multipart = new MimeMultipart();
