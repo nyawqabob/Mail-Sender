@@ -1,6 +1,6 @@
 package by.iba.mail.controller.advice;
 
-import by.iba.mail.config.exception.MessageSendingException;
+import by.iba.mail.exception.MessageSendingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

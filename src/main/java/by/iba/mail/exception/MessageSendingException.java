@@ -1,4 +1,4 @@
-package by.iba.mail.config.exception;
+package by.iba.mail.exception;
 
 public class MessageSendingException extends RuntimeException {
 

@@ -1,6 +1,6 @@
 package by.iba.mail.service.v1;
 
-import by.iba.mail.config.exception.MessageSendingException;
+import by.iba.mail.exception.MessageSendingException;
 import by.iba.mail.config.properties.MailData;
 import by.iba.mail.creator.MimeMessageCreator;
 import by.iba.mail.entity.MessageStructure;
