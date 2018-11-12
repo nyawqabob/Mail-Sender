@@ -1,21 +1,21 @@
 package by.iba.mail.service.v2;
 
-import by.iba.mail.config.exception.AttachmentSendingException;
+import by.iba.mail.config.exception.MessageSendingException;
 import by.iba.mail.config.properties.MailData;
-import by.iba.mail.creater.MimeMessageHelperCreator;
+import by.iba.mail.creator.MimeMessageHelperCreator;
 import by.iba.mail.entity.MessageStructure;
 import by.iba.mail.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 
-@Component
+@Service("secondVersion")
 public class MailServiceImpl implements MailService {
 
     private MailData mailData;
@@ -33,9 +33,9 @@ public class MailServiceImpl implements MailService {
     public void sendMessage(MessageStructure messageStructure) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
-            MimeMessageHelper mimeMessageHelper = mimeMessageHelperCreator.create(mimeMessage, messageStructure, mailData.getUsername());
+            mimeMessageHelperCreator.createAndSet(mimeMessage, messageStructure, mailData.getUsername());
         } catch (MessagingException e) {
-            throw new AttachmentSendingException("Error while sending message. Try again later. ");
+            throw new MessageSendingException("Error while sending message. Try again later. ", e);
         }
         mailSender.send(mimeMessage);
     }
@@ -44,11 +44,11 @@ public class MailServiceImpl implements MailService {
     public void sendMessageWithAttachment(MessageStructure messageStructure) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
-            MimeMessageHelper mimeMessageHelper = mimeMessageHelperCreator.create(mimeMessage, messageStructure, mailData.getUsername());
+            MimeMessageHelper mimeMessageHelper = mimeMessageHelperCreator.createAndSet(mimeMessage, messageStructure, mailData.getUsername());
             FileSystemResource file = new FileSystemResource(new File("D:\\046-5х5-600х600.jpg"));
-            mimeMessageHelper.addAttachment("randomFile", file);
+            mimeMessageHelper.addAttachment("fotka.jpg", file);
         } catch (MessagingException e) {
-            throw new AttachmentSendingException("Error while sending message. Try again later. ");
+            throw new MessageSendingException("Error while sending message. Try again later. ", e);
         }
         mailSender.send(mimeMessage);
     }
@@ -57,12 +57,12 @@ public class MailServiceImpl implements MailService {
     public void sendMessageWithInlineAttachment(MessageStructure messageStructure) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
-            MimeMessageHelper mimeMessageHelper = mimeMessageHelperCreator.create(mimeMessage, messageStructure, mailData.getUsername());
+            MimeMessageHelper mimeMessageHelper = mimeMessageHelperCreator.createAndSet(mimeMessage, messageStructure, mailData.getUsername());
             FileSystemResource file
                     = new FileSystemResource(new File("D:\\046-5х5-600х600.jpg"));
-            mimeMessageHelper.addInline("choclicom.jpg", file);
+            mimeMessageHelper.addInline("fotka.jpg", file);
         } catch (MessagingException e) {
-            throw new AttachmentSendingException("Error while sending message. Try again later. ");
+            throw new MessageSendingException("Error while sending message. Try again later. ", e);
         }
         mailSender.send(mimeMessage);
     }

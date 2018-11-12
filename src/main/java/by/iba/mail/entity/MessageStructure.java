@@ -4,7 +4,7 @@ public class MessageStructure {
 
     private String to;
     private String subject;
-    private String message;
+    private String content;
     private boolean isHtml;
 
     public String getTo() {
@@ -23,12 +23,12 @@ public class MessageStructure {
         this.subject = subject;
     }
 
-    public String getMessage() {
-        return message;
+    public String getContent() {
+        return content;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public boolean isHtml() {

@@ -21,7 +21,6 @@ public class MailData {
         this.username = username;
     }
 
-
     public String getPassword() {
         return password;
     }
